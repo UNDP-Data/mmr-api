@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const getData = require("./getData");
+const getDataList = require("./getDataList");
 
 const app = express();
 
@@ -17,3 +18,4 @@ app.get("/", function (req, res) {
 app.listen(process.env.PORT || 3000, () => console.log("Server is running..."));
 
 app.use("/get-data", getData);
+app.use("/get-indicator-list", getDataList);
