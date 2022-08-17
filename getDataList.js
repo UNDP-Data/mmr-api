@@ -13,7 +13,7 @@ router.get("/", function (req, res, next) {
       },
     })
     .then((d) => {
-      const indicatorList = [... new Set(d.data.map(el => el['sdgs_name/indicator']))]
+      const indicatorList = [... new Set(d.data.filter(el =>el['_validation_status'].label === 'Approved').map(el => el['sdgs_name/indicator']))]
       res.json(indicatorList);          
     })
     .catch((error) => res.json({ error: error.message }));
