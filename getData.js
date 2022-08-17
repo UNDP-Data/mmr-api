@@ -13,7 +13,7 @@ router.get("/", function (req, res, next) {
       },
     })
     .then((d) => {
-      const dataFiltered = d.data.filter(el => el['sdgs_name/indicator'] === req.query.indicator)
+      const dataFiltered = d.data.filter(el => el['sdgs_name/indicator'] === req.query.indicator && el['_validation_status'].label === 'Approved')
       const dataFormated = []
       dataFiltered.forEach(el => {        
         const periodKeys = Object.keys(el).filter(key => key.includes('rperiod') && key !== 'rperiod/reporting_type' && key !== 'rperiod/reporting_format');
