@@ -493,8 +493,6 @@ router.get("/", function (req, res, next) {
               reporting_type: el['rperiod/reporting_type'],
               indicator_split: si['splitindicators/indxsplit'],
               area: area['splitindicators/arearepeatsplit/areaxsplit'],
-              unit: area['splitindicators/arearepeatsplit/observationssplit/unitsplit'],
-              data_source: el['datasources/title']
             }
             periodKeys?.forEach(key => {
               if(key.split(`/`)[key.split(`/`).length - 1] === 'cyear' || key.split(`/`)[key.split(`/`).length - 1] === 'year')
@@ -506,6 +504,8 @@ router.get("/", function (req, res, next) {
             keys?.forEach(key => {
               value[key.split(`/`)[key.split(`/`).length - 1]] = area[key]
             })
+            value.unit = area['arearepeat/observations/unit'];
+            value.data_source = el['datasources/title'];
             dataFormated.push(value)
           })
         })
@@ -516,8 +516,6 @@ router.get("/", function (req, res, next) {
             indicator: IndicatorList.findIndex(ind => ind['SDG-MMCode'] === el['sdgs_name/indicator']) !== -1 ? IndicatorList[IndicatorList.findIndex(ind => ind['SDG-MMCode'] === el['sdgs_name/indicator'])]['Indicator name'] : null,
             reporting_type: el['rperiod/reporting_type'],
             area: area['arearepeat/areax'],
-            unit: area['arearepeat/observations/unit'],
-            data_source: el['datasources/title']
           }
           periodKeys?.forEach(key => {
             if(key.split(`/`)[key.split(`/`).length - 1] === 'cyear' || key.split(`/`)[key.split(`/`).length - 1] === 'year')
@@ -529,6 +527,8 @@ router.get("/", function (req, res, next) {
           keys?.forEach(key => {
             value[key.split(`/`)[key.split(`/`).length - 1]] = area[key]
           })
+          value.unit = area['arearepeat/observations/unit'];
+          value.data_source = el['datasources/title'];
           dataFormated.push(value)
         })
       })
