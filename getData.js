@@ -495,10 +495,12 @@ router.get("/", function (req, res, next) {
               area: area['splitindicators/arearepeatsplit/areaxsplit'],
             }
             periodKeys?.forEach(key => {
-              if(key.split(`/`)[key.split(`/`).length - 1] === 'cyear' || key.split(`/`)[key.split(`/`).length - 1] === 'year')
-                value[key.split(`/`)[key.split(`/`).length - 1]] = 2012 + parseInt(el[key], 10);
-              else
-                value[key.split(`/`)[key.split(`/`).length - 1]] = el[key], 10;
+              if(key.split(`/`)[key.split(`/`).length - 1] === 'cyear' || key.split(`/`)[key.split(`/`).length - 1] === 'qyear' || key.split(`/`)[key.split(`/`).length - 1] === 'syear' || key.split(`/`)[key.split(`/`).length - 1] === 'year')
+                value['year'] = 2012 + parseInt(el[key], 10);
+              if(key.split(`/`)[key.split(`/`).length - 1] === 'semesters')
+                value['semester'] = el['rperiod/rpvalue'];
+              if(key.split(`/`)[key.split(`/`).length - 1] === 'quarters')
+                value['quarter'] = el['rperiod/rpvalue'];
             })
             value.overall_value = area['splitindicators/arearepeatsplit/observationssplit/overallindicatorvaluesplit'];
             keys?.forEach(key => {
@@ -518,10 +520,12 @@ router.get("/", function (req, res, next) {
             area: area['arearepeat/areax'],
           }
           periodKeys?.forEach(key => {
-            if(key.split(`/`)[key.split(`/`).length - 1] === 'cyear' || key.split(`/`)[key.split(`/`).length - 1] === 'year')
-              value[key.split(`/`)[key.split(`/`).length - 1]] = 2012 + parseInt(el[key], 10);
-            else
-              value[key.split(`/`)[key.split(`/`).length - 1]] = el[key], 10;
+            if(key.split(`/`)[key.split(`/`).length - 1] === 'cyear' || key.split(`/`)[key.split(`/`).length - 1] === 'qyear' || key.split(`/`)[key.split(`/`).length - 1] === 'syear' || key.split(`/`)[key.split(`/`).length - 1] === 'year')
+              value['year'] = 2012 + parseInt(el[key], 10);
+            if(key.split(`/`)[key.split(`/`).length - 1] === 'semesters')
+              value['semester'] = el['rperiod/rpvalue'];
+            if(key.split(`/`)[key.split(`/`).length - 1] === 'quarters')
+              value['quarter'] = el['rperiod/rpvalue'];
           })
           value.overall_value = area['arearepeat/observations/overallindicatorvalue'];
           keys?.forEach(key => {
